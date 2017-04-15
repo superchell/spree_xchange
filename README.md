@@ -9,7 +9,7 @@ Installation
 
 install as gem
 
-    gem 'spree_xchange', :git => 'https://github.com/2rba/spree_xchange'
+    gem 'spree_xchange', :git => 'https://github.com/beard-spree/spree_xchange'
 
     bundle install
     rake spree_xchange:install:migrations
