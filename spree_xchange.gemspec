@@ -3,7 +3,7 @@ Gem::Specification.new do |s|
   s.name        = 'spree_xchange'
   s.version     = '3.2.0'
   s.summary     = '1c exchange module'
-  s.description = 'Toto style blogging for Spree'
+  s.description = 'bitrix mustDie'
   s.required_ruby_version = '>= 2.0.0'
 
   s.author            = '42team'
