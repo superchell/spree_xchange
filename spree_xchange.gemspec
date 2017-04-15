@@ -1,26 +1,25 @@
-# encoding: UTF-8
 Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.name        = 'spree_xchange'
-  s.version     = '1.0.0'
+  s.version     = '3.2.0'
   s.summary     = '1c exchange module'
-  s.description = ''
-  s.required_ruby_version = '>= 1.9.3'
+  s.description = 'Toto style blogging for Spree'
+  s.required_ruby_version = '>= 2.0.0'
 
-  # s.author    = 'You'
-  # s.email     = 'you@example.com'
-  # s.homepage  = 'http://www.spreecommerce.com'
+  s.author            = '42team'
+  s.email             = 'info@42team.ru'
+  s.homepage          = 'http://spreecommerce.com'
+  s.rubyforge_project = 'spree_simple_blog'
 
-  #s.files       = `git ls-files`.split("\n")
-  #s.test_files  = `git ls-files -- {test,spec,features}/*`.split("\n")
+  s.files        = Dir['README.markdown', 'lib/**/*', 'app/**/*', 'config/*']
   s.require_path = 'lib'
   s.requirements << 'none'
 
-  s.add_dependency 'spree_core' #, '~> 3.2.0'
+  s.has_rdoc = true
 
-  s.add_development_dependency 'capybara', '1.0.1'
-  s.add_development_dependency 'factory_girl', '~> 2.6.4'
-  s.add_development_dependency 'ffaker'
-  s.add_development_dependency 'rspec-rails',  '~> 2.9'
-  s.add_development_dependency 'sqlite3'
+  s.add_dependency('spree_core', '>= 3.0.0')
+  s.add_dependency('capybara', '1.0.1')
+  s.add_dependency('factory_girl', '~> 2.6.4')
+  s.add_dependency('ffaker')
+  s.add_dependency('rspec-rails',  '~> 2.9')
 end
