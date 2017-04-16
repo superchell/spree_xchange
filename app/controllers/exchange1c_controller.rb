@@ -273,7 +273,8 @@ class Exchange1cController < ApplicationController
 def authenticate
   authenticate_or_request_with_http_basic do |username, password|
     @user = Spree::User.find_by_email(username)
-    @user && @user.has_spree_role?("admin") && password == @user.api_key
+    valid_password = Spree::User.find_by_email(username).valid_password?(password)
+    @user && @user.has_spree_role?("admin") && valid_password
 
 #    username == "foo" && password == "bar"
   end
