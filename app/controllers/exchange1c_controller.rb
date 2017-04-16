@@ -250,6 +250,7 @@ class Exchange1cController < ApplicationController
         render :text => 'success'
     end
   end
+
   private
   def strAddDash(str)
     str.scan(/^(.{8})(.{4})(.{4})(.{4})(.{12})$/).join('-')

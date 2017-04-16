@@ -6,12 +6,20 @@ Rails.application.routes.draw do
         get '/test', to: 'exchange1c#test'
 
 
+
+
+
+
+
+
+
+end
+
+
+Spree::Core::Engine.add_routes do
  namespace :admin, path: Spree.admin_path do
-    resource :xchange, only: [:edit, :update] do
-      post :testload, on: :collection
-    end
-  end
-
-
-
+     resource :xchange, only: [:edit, :update] do
+       post :testload, on: :collection
+     end
+   end
 end

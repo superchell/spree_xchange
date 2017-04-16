@@ -1,13 +1,9 @@
 module Spree
   module Admin
-    class XchangesController < BaseController
+        class XchangesController < BaseController
     
 
-      def new
-        @xchange = Xchange.new
-      end
-
-      def edit
+       def edit
 
       end
 
