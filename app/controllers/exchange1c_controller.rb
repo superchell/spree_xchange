@@ -39,19 +39,10 @@ class Exchange1cController < ApplicationController
   skip_before_filter :verify_authenticity_token
   before_filter :authenticate
 
-  def test
 
-    render :xml => builder.to_xml
-=begin
-    xchangeId='60b438f8-3e9e-11dc-8e55-0019d171d567'.gsub('-','')
-    name = 'test'
-    p = Spree::Product.where('xchange_id = UNHEX(?)', xchangeId).first_or_create
-    p.name = name
-    p.price=0
-    p.xchange_id = Array(xchangeId).pack('H*')
-    p.save!
-    render :text => p.inspect.to_s.html_safe
-=end
+  def test
+   br = { :section => 'test', :return => 'test', :email => 'test@42team.ru' }
+   render :xml => br.to_xml
   end
 
   def main
@@ -282,7 +273,7 @@ class Exchange1cController < ApplicationController
 def authenticate
   authenticate_or_request_with_http_basic do |username, password|
     @user = Spree::User.find_by_email(username)
-    @user && @user.has_role?("admin") && password == @user.api_key
+    @user && @user.has_spree_role?("admin") && password == @user.api_key
 
 #    username == "foo" && password == "bar"
   end
