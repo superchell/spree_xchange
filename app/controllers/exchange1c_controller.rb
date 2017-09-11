@@ -251,45 +251,45 @@ class Exchange1cController < ApplicationController
 
         end
 
-        # when 'offers.xml'
-        #   filename = 'offers.xml'
-        #   filename = '/tmp/' + Digest::MD5.hexdigest(@user.email) + '_' + cookies[:session_id].to_s + '/' + filename
-        #   xml = Nokogiri::XML(File.open(filename))
-        #   r = xml.xpath("//Предложение")
-        #   r.each {
-        #       |nodeOffer|
-        #     id = nodeOffer.xpath("Ид").first.content.gsub('-', '')
-        #     if ((i = id.index('#')).nil?)
-        #       xchange_id = id
-        #       product = Spree::Product.where('xchange_id = UNHEX(?)', xchange_id).first
-        #       variant = product
-        #     else
-        #       xchange_id = id[0..(i-1)]
-        #       variant_id = id[(i+1)..-1]
-        #       product = Spree::Product.where('xchange_id = UNHEX(?)', xchange_id).first
-        #       variant = product.variants.where('xchange_id = UNHEX(?)', variant_id).first
-        #     end
-        #     variant.price = nodeOffer.xpath('Цены/Цена/ЦенаЗаЕдиницу').first.content.to_i
-        #     variant.count_on_hand = nodeOffer.xpath('Количество').first.content.to_i
-        #     product.available_on = Time.now
-        #     #if variant.count_on_hand > 0
-        #     #  product.available_on = Time.now
-        #     #else
-        #     #  product.available_on =nill
-        #     #end
-        #     product.save
-        #     variant.save
-        #     #p v
-        #     #hash = {}
-        #     #p.children.each do |node|
-        #     #    hash[node.node_name] = node.content
-        #     #  end
-        #     #p hash
-        #   }
+        when 'offers.xml'
+          filename = 'offers.xml'
+          filename = '/tmp/' + Digest::MD5.hexdigest(@user.email) + '_' + cookies[:session_id].to_s + '/' + filename
+          xml = Nokogiri::XML(File.open(filename))
+          r = xml.xpath("//Предложение")
+          r.each {
+              |nodeOffer|
+            id = nodeOffer.xpath("Ид").first.content.gsub('-', '')
+            if ((i = id.index('#')).nil?)
+              xchange_id = id
+              product = Spree::Product.where('xchange_id = UNHEX(?)', xchange_id).first
+              variant = product
+            else
+              xchange_id = id[0..(i-1)]
+              variant_id = id[(i+1)..-1]
+              product = Spree::Product.where('xchange_id = UNHEX(?)', xchange_id).first
+              variant = product.variants.where('xchange_id = UNHEX(?)', variant_id).first
+            end
+            variant.price = nodeOffer.xpath('Цены/Цена/ЦенаЗаЕдиницу').first.content.to_i
+            variant.count_on_hand = nodeOffer.xpath('Количество').first.content.to_i
+            product.available_on = Time.now
+            #if variant.count_on_hand > 0
+            #  product.available_on = Time.now
+            #else
+            #  product.available_on =nill
+            #end
+            product.save
+            variant.save
+            #p v
+            #hash = {}
+            #p.children.each do |node|
+            #    hash[node.node_name] = node.content
+            #  end
+            #p hash
+          }
 
-        # else
-        #   filename = '/tmp/' + Digest::MD5.hexdigest(@user.email) + '_' + cookies[:session_id].to_s + '/' + Digest::MD5.hexdigest(params[:filename])
-        # end
+        else
+          filename = '/tmp/' + Digest::MD5.hexdigest(@user.email) + '_' + cookies[:session_id].to_s + '/' + Digest::MD5.hexdigest(params[:filename])
+        end
 
         render plain: 'success'
     end
